@@ -1,18 +1,14 @@
+import 'package:equatable/equatable.dart';
 
-class MyClass{
+class MyClass extends Equatable {
   String name;
   int roll;
-  MyClass(this.name,this.roll);
+
+  MyClass(this.name, this.roll);
 
   @override
-  bool operator ==(Object other) {
-  if(identical(this, other)) return true;
-
-  return other is MyClass && other.roll==roll && other.name==name;
-  }
+  List<Object?> get props => [name, roll];
 
   @override
-  // TODO: implement hashCode
-  int get hashCode => name.hashCode;
-
+  bool? get stringify => false;
 }
