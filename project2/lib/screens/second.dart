@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubits/counter_cubit.dart';
+import '../cubits/counter_state.dart';
 import '../data/model.dart';
 
 class SecondPage extends StatelessWidget {
@@ -11,7 +14,11 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Fetched Data"),
+        title: BlocBuilder<CounterCubit, CounterState>(
+          builder: (context, state) {
+            return Text("Total Count:  ${state.count}");
+          },
+        ),
         centerTitle: true,
       ),
       body: ListView.builder(
@@ -31,6 +38,7 @@ class SecondPage extends StatelessWidget {
         },
         itemCount: list.length,
       ),
+
     );
   }
 }
