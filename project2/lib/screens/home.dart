@@ -24,10 +24,22 @@ class Home extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Builder(builder: (ctx){
+              final state= ctx.watch<CounterCubit>().state;
+              return Text(
+                "With Context.watch: ${state.count}",
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+              );
+            }),
+           const Divider(),
             BlocBuilder<CounterCubit, CounterState>(
               builder: (context, state) {
                 return Text(
-                  "${state.count}",
+                  "With BlockBuilder: ${state.count}",
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -36,6 +48,7 @@ class Home extends StatelessWidget {
                 );
               },
             ),
+            const Divider(),
             Center(
               child: BlocConsumer<HelperCubit, HelperState>(
                 listener: (ctx, state) {
@@ -70,6 +83,7 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           BlocProvider.of<CounterCubit>(context).increment();
+
         },
         child: const Icon(Icons.add),
       ),
