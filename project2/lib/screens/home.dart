@@ -24,8 +24,8 @@ class Home extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Builder(builder: (ctx){
-              final state= ctx.watch<CounterCubit>().state;
+            Builder(builder: (ctx) {
+              final state = ctx.watch<CounterCubit>().state;
               return Text(
                 "With Context.watch: ${state.count}",
                 style: const TextStyle(
@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                 ),
               );
             }),
-           const Divider(),
+            const Divider(),
             BlocBuilder<CounterCubit, CounterState>(
               builder: (context, state) {
                 return Text(
@@ -55,12 +55,14 @@ class Home extends StatelessWidget {
                   if (state is LoadedState) {
                     final List<Welcome> list = welcomeFromJson(state.jsonBody);
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (ctx) => BlocProvider.value(
-                                  value: BlocProvider.of<CounterCubit>(context),
-                                  child: SecondPage(list: list),
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => BlocProvider.value(
+                          value: BlocProvider.of<CounterCubit>(context),
+                          child: SecondPage(list: list),
+                        ),
+                      ),
+                    );
                   }
                 },
                 builder: (context, state) {
@@ -83,7 +85,6 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           BlocProvider.of<CounterCubit>(context).increment();
-
         },
         child: const Icon(Icons.add),
       ),
