@@ -85,15 +85,6 @@ class Home extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, ThirdScreen.routeName);
-                /*  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (ctx) => BlocProvider.value(
-                        value: BlocProvider.of<CounterCubit>(context),
-                        child: ThirdScreen(),
-                      ),
-                    ),
-                  );*/
                 },
                 child: const Text("Third page")),
             const Divider(),
