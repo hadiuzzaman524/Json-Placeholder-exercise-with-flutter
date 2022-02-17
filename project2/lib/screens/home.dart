@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/cubits/counter_cubit.dart';
 import 'package:project2/data/model.dart';
+import 'package:project2/screens/fourth.dart';
 import 'package:project2/screens/second.dart';
+import 'package:project2/screens/third.dart';
 import 'package:project2/widgets/button.dart';
 
 import '../cubits/counter_state.dart';
@@ -79,6 +81,27 @@ class Home extends StatelessWidget {
                 },
               ),
             ),
+            const Divider(),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, ThirdScreen.routeName);
+                /*  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (ctx) => BlocProvider.value(
+                        value: BlocProvider.of<CounterCubit>(context),
+                        child: ThirdScreen(),
+                      ),
+                    ),
+                  );*/
+                },
+                child: const Text("Third page")),
+            const Divider(),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, FourthScreen.routeName);
+                },
+                child: const Text("Fourth page")),
           ],
         ),
       ),

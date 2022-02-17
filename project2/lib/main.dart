@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project2/cubits/counter_cubit.dart';
 import 'package:project2/cubits/helper_cubit.dart';
+import 'package:project2/screens/fourth.dart';
 import 'package:project2/screens/home.dart';
+import 'package:project2/screens/third.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final CounterCubit counterCubit = CounterCubit();
 
   // This widget is the root of your application.
   @override
@@ -18,16 +22,26 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => HelperCubit(),
-            ),
-            BlocProvider(
-              create: (ctx) => CounterCubit(),
-            ),
-          ],
-          child: const Home(),
-        ));
+        // Named Route..
+      initialRoute: '/',
+        routes: {
+          ThirdScreen.routeName: (ctx) => BlocProvider.value(
+                value: counterCubit, //BlocProvider.of<CounterCubit>(context),
+                child: const ThirdScreen(),
+              ),
+          FourthScreen.routeName: (ctx) => const FourthScreen(),
+
+          '/': (ctx)=>MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => HelperCubit(),
+              ),
+              BlocProvider(
+                create: (ctx) => counterCubit,
+              ),
+            ], child: const Home(),
+          ),
+
+        },);
   }
 }
