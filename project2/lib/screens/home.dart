@@ -98,7 +98,8 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          BlocProvider.of<CounterCubit>(context).increment();
+        //  BlocProvider.of<CounterCubit>(context).increment();
+          context.read<CounterCubit>().increment();
         },
         child: const Icon(Icons.add),
       ),
