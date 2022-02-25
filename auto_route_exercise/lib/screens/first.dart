@@ -35,7 +35,7 @@ class MyHomePage extends StatelessWidget {
               /*  Navigator.push(context,
                     MaterialPageRoute(builder: (ctx) => const ThirdPage()));*/
                 //AutoRouter.of(context).pushNamed(ThirdRoute.name);
-                context.router.pushNamed(ThirdRoute.name);
+                context.router.push(const ThirdRoute());
               },
               child: const Text("Go to third page"),
             ),
